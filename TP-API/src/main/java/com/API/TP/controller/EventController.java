@@ -22,7 +22,7 @@ public class EventController {
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
         return eventService.getEventById(id)
-                .orElseThrow(() -> new RuntimeException("Event not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Event inconnu avec id: " + id));
     }
 
     @PostMapping
@@ -33,7 +33,7 @@ public class EventController {
     @PutMapping("/{id}")
     public Event updateEvent(@PathVariable Long id, @RequestBody Event eventDetails) {
         Event event = eventService.getEventById(id)
-                .orElseThrow(() -> new RuntimeException("Event not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Event inconnu avec id: " + id));
         event.setNom(eventDetails.getNom());
         event.setDate(eventDetails.getDate());
         event.setLieu(eventDetails.getLieu());

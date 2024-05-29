@@ -22,7 +22,7 @@ public class TicketController {
     @GetMapping("/{id}")
     public Ticket getTicketById(@PathVariable Long id) {
         return ticketService.getTicketById(id)
-                .orElseThrow(() -> new RuntimeException("Ticket not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Ticket inconnu avec id:  " + id));
     }
 
     @PostMapping
@@ -33,7 +33,7 @@ public class TicketController {
     @PutMapping("/{id}")
     public Ticket updateTicket(@PathVariable Long id, @RequestBody Ticket ticketDetails) {
         Ticket ticket = ticketService.getTicketById(id)
-                .orElseThrow(() -> new RuntimeException("Ticket not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Ticket inconnu avec id: " + id));
         ticket.setTicketType(ticketDetails.getTicketType());
         ticket.setPrice(ticketDetails.getPrice());
         return ticketService.updateTicket(ticket);

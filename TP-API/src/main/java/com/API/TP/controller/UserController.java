@@ -1,5 +1,7 @@
 package com.API.TP.controller;
 
+import com.API.TP.DTO.CreateUserDto;
+import com.API.TP.DTO.UpdateUserDto;
 import com.API.TP.model.User;
 import com.API.TP.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +28,21 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@RequestBody CreateUserDto createUserDto) {
+        User user = new User();
+        user.setNom(createUserDto.getNom());
+        user.setEmail(createUserDto.getEmail());
+        user.setMotDePasse(createUserDto.getMotDePasse());
         return userService.createUser(user);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public User updateUser(@PathVariable Long id, @RequestBody UpdateUserDto updateUserDto) {
         User user = userService.getUserById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id " + id));
-        user.setNom(userDetails.getNom());
-        user.setEmail(userDetails.getEmail());
-        user.setMotDePasse(userDetails.getMotDePasse());
+        user.setNom(updateUserDto.getNom());
+        user.setEmail(updateUserDto.getEmail());
+        user.setMotDePasse(updateUserDto.getMotDePasse());
         return userService.updateUser(user);
     }
 

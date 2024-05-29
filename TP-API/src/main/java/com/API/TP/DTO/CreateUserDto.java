@@ -1,34 +1,9 @@
-package com.API.TP.model;
+package com.API.TP.DTO;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-public class User {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class CreateUserDto {
     private String nom;
-
     private String email;
-
     private String motDePasse;
-
-    @OneToMany(mappedBy = "user")
-    private List<Ticket> tickets;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNom() {
         return nom;

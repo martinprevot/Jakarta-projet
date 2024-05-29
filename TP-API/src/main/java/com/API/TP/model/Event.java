@@ -13,7 +13,7 @@ public class Event {
 
     private String nom;
     private Date date;
-    private String lieu; // Assure-toi que cet attribut est déclaré dans ta classe Event
+    private String lieu;
 
     public String getNom() {
         return nom;

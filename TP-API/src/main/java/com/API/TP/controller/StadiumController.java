@@ -22,7 +22,7 @@ public class StadiumController {
     @GetMapping("/{id}")
     public Stadium getStadiumById(@PathVariable Long id) {
         return stadiumService.getStadiumById(id)
-                .orElseThrow(() -> new RuntimeException("Stadium not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Stade inconnu avec id:  " + id));
     }
 
     @PostMapping
@@ -33,7 +33,7 @@ public class StadiumController {
     @PutMapping("/{id}")
     public Stadium updateStadium(@PathVariable Long id, @RequestBody Stadium stadiumDetails) {
         Stadium stadium = stadiumService.getStadiumById(id)
-                .orElseThrow(() -> new RuntimeException("Stadium not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Stade inconnu avec id: " + id));
         stadium.setNom(stadiumDetails.getNom());
         stadium.setLocalisation(stadiumDetails.getLocalisation());
         return stadiumService.updateStadium(stadium);
