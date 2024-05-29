@@ -1,0 +1,5 @@
+com\API\TP\model\Stadium.class
+com\API\TP\model\Ticket.class
+com\API\TP\TpApiApplication.class
+com\API\TP\model\User.class
+com\API\TP\model\Event.class

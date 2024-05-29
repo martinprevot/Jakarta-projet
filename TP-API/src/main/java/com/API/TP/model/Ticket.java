@@ -1,5 +1,6 @@
 package com.API.TP.model;
 
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,9 +10,8 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double prix;
-
-    private String type; // Individuel ou groupe
+    private String ticketType;
+    private double price;
 
     public Long getId() {
         return id;
@@ -21,19 +21,19 @@ public class Ticket {
         this.id = id;
     }
 
-    public double getPrix() {
-        return prix;
+    public String getTicketType() {
+        return ticketType;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
     }
 
-    public String getType() {
-        return type;
+    public double getPrice() {
+        return price;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

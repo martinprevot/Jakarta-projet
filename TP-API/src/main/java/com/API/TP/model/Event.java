@@ -12,17 +12,8 @@ public class Event {
     private Long id;
 
     private String nom;
-
-    @Temporal(TemporalType.DATE)
     private Date date;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String lieu; // Assure-toi que cet attribut est déclaré dans ta classe Event
 
     public String getNom() {
         return nom;
@@ -32,11 +23,27 @@ public class Event {
         this.nom = nom;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 }
