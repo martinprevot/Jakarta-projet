@@ -1,20 +1,11 @@
-package com.API.TP.model;
+package com.API.TP.DTO;
 
-import jakarta.persistence.*;
+public class TicketDto {
 
-@Entity
-public class Ticket {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String ticketType;
     private double price;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private Long userId;
 
     // Getters and Setters
 
@@ -42,11 +33,11 @@ public class Ticket {
         this.price = price;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

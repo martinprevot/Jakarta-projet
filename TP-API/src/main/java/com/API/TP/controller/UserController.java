@@ -5,6 +5,7 @@ import com.API.TP.DTO.UpdateUserDto;
 import com.API.TP.model.User;
 import com.API.TP.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +29,9 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody CreateUserDto createUserDto) {
-        User user = new User();
-        user.setNom(createUserDto.getNom());
-        user.setEmail(createUserDto.getEmail());
-        user.setMotDePasse(createUserDto.getMotDePasse());
-        return userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User createdUser = userService.createUser(user);
+        return ResponseEntity.ok(createdUser);
     }
 
     @PutMapping("/{id}")

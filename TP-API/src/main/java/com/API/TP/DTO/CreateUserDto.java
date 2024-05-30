@@ -8,7 +8,6 @@ public class CreateUserDto {
     private String nom;
     private String email;
     private String motDePasse;
-    //créer user liste ticket
     private List<Ticket> tickets;
 
 

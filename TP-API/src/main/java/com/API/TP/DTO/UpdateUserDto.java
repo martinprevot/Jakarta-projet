@@ -5,7 +5,6 @@ public class UpdateUserDto {
     private String email;
     private String motDePasse;
 
-    // Getters et Setters
     public String getNom() {
         return nom;
     }
