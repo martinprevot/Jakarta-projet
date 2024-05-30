@@ -43,4 +43,11 @@ public class TicketController {
     public void deleteTicket(@PathVariable Long id) {
         ticketService.deleteTicket(id);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<Ticket> getTicketsByUserId(@PathVariable Long userId) {
+        return ticketService.getTicketsByUserId(userId);
+    }
+
+
 }

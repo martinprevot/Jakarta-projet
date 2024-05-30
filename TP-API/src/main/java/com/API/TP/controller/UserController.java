@@ -24,7 +24,7 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("User inconnu " + id));
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class UserController {
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody UpdateUserDto updateUserDto) {
         User user = userService.getUserById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("User inconnu " + id));
         user.setNom(updateUserDto.getNom());
         user.setEmail(updateUserDto.getEmail());
         user.setMotDePasse(updateUserDto.getMotDePasse());
