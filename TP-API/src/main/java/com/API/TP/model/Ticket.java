@@ -9,14 +9,16 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "ticket_type")
     private String ticketType;
-    private double price;
+
+    @Column(name = "prix", nullable = false)
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    // Getters and Setters
 
     public Long getId() {
         return id;

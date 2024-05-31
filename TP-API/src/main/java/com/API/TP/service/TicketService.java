@@ -1,8 +1,10 @@
 package com.API.TP.service;
 
+import com.API.TP.DTO.TicketDto;
 import com.API.TP.model.Ticket;
 import com.API.TP.model.User;
 import com.API.TP.repository.TicketRepository;
+import com.API.TP.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,10 @@ public class TicketService {
     private TicketRepository ticketRepository;
 
     @Autowired
-    private UserService userService; // Vous pouvez conserver l'injection UserService ici si nécessaire
+    private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public List<Ticket> getAllTickets() {
         return ticketRepository.findAll();
@@ -28,7 +33,13 @@ public class TicketService {
         return ticketRepository.findById(id);
     }
 
-    public Ticket createTicket(Ticket ticket) {
+    public Ticket createTicket(TicketDto ticketDto) {
+        User user = userRepository.findById(ticketDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User inconnu avec id: " + ticketDto.getUserId()));
+        Ticket ticket = new Ticket();
+        ticket.setTicketType(ticketDto.getTicketType());
+        ticket.setPrice(ticketDto.getPrice());
+        ticket.setUser(user);
         return ticketRepository.save(ticket);
     }
 
@@ -43,6 +54,4 @@ public class TicketService {
     public List<Ticket> getTicketsByUserId(Long userId) {
         return ticketRepository.findByUserId(userId);
     }
-
-
 }

@@ -23,7 +23,6 @@ public class TicketController {
     @Autowired
     private UserService userService;
 
-
     @Autowired
     private TicketService ticketService;
 
@@ -38,10 +37,6 @@ public class TicketController {
                 .orElseThrow(() -> new RuntimeException("Ticket inconnu avec id:  " + id));
     }
 
-    @PostMapping
-    public Ticket createTicket(@RequestBody Ticket ticket) {
-        return ticketService.createTicket(ticket);
-    }
 
     @PutMapping("/{id}")
     public Ticket updateTicket(@PathVariable Long id, @RequestBody Ticket ticketDetails) {
@@ -62,16 +57,9 @@ public class TicketController {
         return ticketService.getTicketsByUserId(userId);
     }
 
-    @PostMapping("/tickets")
+    @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketDto ticketDto) {
-        User user = userService.getUserById(ticketDto.getUserId()).orElseThrow(() -> new RuntimeException("User inconnu " + ticketDto.getUserId()));
-
-        Ticket ticket = new Ticket();
-        ticket.setTicketType(ticketDto.getTicketType());
-        ticket.setPrice(ticketDto.getPrice());
-        ticket.setUser(user);
-
-        Ticket createdTicket = ticketService.createTicket(ticket);
+        Ticket createdTicket = ticketService.createTicket(ticketDto);
         return ResponseEntity.ok(createdTicket);
     }
 
