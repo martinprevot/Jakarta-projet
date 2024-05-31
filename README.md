@@ -28,7 +28,7 @@ Il y a deux rôles principaux dans l'application :
 
 L'application peut être accessible via l'API suivante :
 
-- API : `http://localhost:8080`
+- API : `http://localhost:7070`
 
  ## UserController Routes
 - GET /users
