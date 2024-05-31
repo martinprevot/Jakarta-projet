@@ -19,9 +19,25 @@ public class Ticket {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "epreuve_id")
+    private Epreuve epreuve;
+
 
     public Long getId() {
         return id;
+    }
+
+    public Epreuve getEpreuve() {
+        return epreuve;
+    }
+
+    public void setEpreuve(Epreuve epreuve) {
+        this.epreuve = epreuve;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public void setId(Long id) {

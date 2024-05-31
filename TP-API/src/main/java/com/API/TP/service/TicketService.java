@@ -6,10 +6,11 @@ import com.API.TP.model.User;
 import com.API.TP.repository.TicketRepository;
 import com.API.TP.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.API.TP.model.Epreuve;
+
+
+import com.API.TP.repository.EpreuveRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,10 @@ public class TicketService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EpreuveRepository epreuveRepository;
+
+
     public List<Ticket> getAllTickets() {
         return ticketRepository.findAll();
     }
@@ -35,11 +40,21 @@ public class TicketService {
 
     public Ticket createTicket(TicketDto ticketDto) {
         User user = userRepository.findById(ticketDto.getUserId())
-                .orElseThrow(() -> new RuntimeException("User inconnu avec id: " + ticketDto.getUserId()));
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + ticketDto.getUserId()));
+        Epreuve epreuve = epreuveRepository.findById(ticketDto.getEpreuveId())
+                .orElseThrow(() -> new RuntimeException("Epreuve not found with ID: " + ticketDto.getEpreuveId()));
+
+        // Vérification de l'inscription existante à une épreuve à la même date
+        boolean alreadyRegistered = ticketRepository.existsByUserAndEpreuveDate(user, epreuve.getDate());
+        if (alreadyRegistered) {
+            throw new RuntimeException("User is already registered for an event on this date.");
+        }
+
         Ticket ticket = new Ticket();
         ticket.setTicketType(ticketDto.getTicketType());
         ticket.setPrice(ticketDto.getPrice());
         ticket.setUser(user);
+        ticket.setEpreuve(epreuve);
         return ticketRepository.save(ticket);
     }
 

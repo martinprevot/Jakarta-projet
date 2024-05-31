@@ -2,6 +2,7 @@ package com.API.TP.DTO;
 
 public class TicketDto {
     private String ticketType;
+    private Long epreuveId;
     private double price;
     private Long userId;
 
@@ -27,5 +28,13 @@ public class TicketDto {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getEpreuveId() {
+        return epreuveId;
+    }
+
+    public void setEpreuveId(Long epreuveId) {
+        this.epreuveId = epreuveId;
     }
 }
