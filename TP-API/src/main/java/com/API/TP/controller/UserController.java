@@ -1,6 +1,5 @@
 package com.API.TP.controller;
 
-import com.API.TP.DTO.CreateUserDto;
 import com.API.TP.DTO.UpdateUserDto;
 import com.API.TP.model.User;
 import com.API.TP.service.UserService;

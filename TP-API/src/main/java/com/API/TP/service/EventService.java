@@ -1,10 +1,8 @@
 package com.API.TP.service;
-
 import com.API.TP.model.Event;
 import com.API.TP.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
